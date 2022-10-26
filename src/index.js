@@ -15,11 +15,11 @@ renderer.setClearColor(white, 1.0);
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-camera.position.z += 10;
-camera.position.x += 10;
-camera.position.y += 10;
+camera.position.z += 0;
+camera.position.x += 0;
+camera.position.y += 15;
 
-camera.lookAt(0, 0, 0);
+camera.lookAt(0, 0, 10);
 
 scene.add(camera);
 
@@ -31,7 +31,7 @@ scene.add(sun);
 
 // TODO: implement terrain.
 const size = 128;
-const height = 5;
+const height = 10;
 const geometry = new THREE.PlaneGeometry(20, 20, size-1, size-1);
 
 geometry.rotateX((Math.PI / 180)*-90);
@@ -49,10 +49,10 @@ terrainImage.onload = () => {
     scene.add(mesh);
 };
 
-terrainImage.src = 'images/terrain.png';
+terrainImage.src = 'images/byMiljo.png'; // Importerer bilde til terreng
 
 const rock = new THREE.TextureLoader().load('images/rock.png');
-const grass = new THREE.TextureLoader().load('images/grass.png');
+const grass = new THREE.TextureLoader().load('images/road.png');
 const alpha = new THREE.TextureLoader().load('images/terrain.png');
 
 grass.wrapS = THREE.RepeatWrapping;
@@ -71,7 +71,7 @@ const material = new TextureSplattingMaterial({
     alphaMaps: [alpha]
 });
 
-material.wireframe = false;
+material.wireframe = false; // Fjerner wireframe
 
 
 function updateRendererSize() {
