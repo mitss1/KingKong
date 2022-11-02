@@ -4,13 +4,17 @@ import * as THREE from "./three.module.js";
 import { getHeightmapData } from "./utils.js";
 import TextureSplattingMaterial from "./TextureSplattingMaterial.js";
 import { OrbitControls } from "./OrbitControls.js";
+import {VRButton} from "../Common/VRButton.js";
 
 //Camera start
-const renderer = new THREE.WebGLRenderer({
-    canvas: document.querySelector("canvas"),
-    antialias: true,
-    setSize: (window.innerWidth, window.innerHeight)
-});
+const canvas = document.querySelector("canvas"); //Get canvas
+const renderer = new THREE.WebGLRenderer({canvas});
+renderer.xr.enabled = true; // Enable VR
+renderer.setSize(window.innerWidth, window.innerHeight); // set the size of the renderer
+document.body.appendChild(renderer.domElement); // add the renderer to the body of the document
+document.body.appendChild(VRButton.createButton(renderer)); //VR button
+
+//document.body.append(VRButton.createButton(this.renderer)); //Legger til knapp for VR
 
 const white = new THREE.Color(THREE.Color.NAMES.white);
 renderer.setClearColor(white, 1.0);
