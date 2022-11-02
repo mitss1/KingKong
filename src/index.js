@@ -3,10 +3,13 @@
 import * as THREE from "./three.module.js";
 import { getHeightmapData } from "./utils.js";
 import TextureSplattingMaterial from "./TextureSplattingMaterial.js";
+import { OrbitControls } from "./OrbitControls.js";
 
+//Camera start
 const renderer = new THREE.WebGLRenderer({
     canvas: document.querySelector("canvas"),
     antialias: true,
+    setSize: (window.innerWidth, window.innerHeight)
 });
 
 const white = new THREE.Color(THREE.Color.NAMES.white);
@@ -21,7 +24,12 @@ camera.position.y += 15;
 
 camera.lookAt(0, 0, 10);
 
+const controls = new OrbitControls(camera, renderer.domElement);
+camera.position.set( 0, 20, 100 );
+controls.update();
+
 scene.add(camera);
+//Camera end
 
 const axesHelper = new THREE.AxesHelper(1);
 scene.add(axesHelper);
