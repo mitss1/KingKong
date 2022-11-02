@@ -6,7 +6,7 @@ import TextureSplattingMaterial from "./TextureSplattingMaterial.js";
 import { OrbitControls } from "./OrbitControls.js";
 import {VRButton} from "../Common/VRButton.js";
 
-//Camera start
+
 const canvas = document.querySelector("canvas"); //Get canvas
 const renderer = new THREE.WebGLRenderer({canvas});
 renderer.xr.enabled = true; // Enable VR
@@ -14,19 +14,27 @@ renderer.setSize(window.innerWidth, window.innerHeight); // set the size of the 
 document.body.appendChild(renderer.domElement); // add the renderer to the body of the document
 document.body.appendChild(VRButton.createButton(renderer)); //VR button
 
-//document.body.append(VRButton.createButton(this.renderer)); //Legger til knapp for VR
 
 const white = new THREE.Color(THREE.Color.NAMES.white);
 renderer.setClearColor(white, 1.0);
 
 const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-camera.position.z += 0;
-camera.position.x += 0;
-camera.position.y += 15;
+//Camera for vr
+const vrCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+vrCamera.position.set( 0, 10, 0); // set the initial position entering VR
+//When entering VR
+renderer.xr.addEventListener(`sessionstart`, function (){
+    scene.add(vrCamera);
+    vrCamera.add(camera);
+})
+//When exiting VR
+renderer.xr.addEventListener(`sessionend`, function (){
+    scene.remove(vrCamera);
+    camera.remove(vrCamera);
+})
 
-camera.lookAt(0, 0, 10);
+const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 camera.position.set( 0, 20, 100 );
