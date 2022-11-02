@@ -18,7 +18,20 @@ document.body.appendChild(VRButton.createButton(renderer)); //VR button
 const white = new THREE.Color(THREE.Color.NAMES.white);
 renderer.setClearColor(white, 1.0);
 
-const scene = new THREE.Scene();
+const scene = new THREE.Scene()
+{
+    //Skybox
+    const loader = new THREE.CubeTextureLoader();
+    const texture = loader.load([
+        'images/Daylight_Right.jpg',
+        'images/Daylight_Left.jpg',
+        'images/Daylight_Top.jpg',
+        'images/Daylight_Bottom.jpg',
+        'images/Daylight_Front.jpg',
+        'images/Daylight_Back.jpg',
+    ]);
+    scene.background = texture;
+};
 
 //Camera for vr
 const vrCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
