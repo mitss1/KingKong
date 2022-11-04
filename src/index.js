@@ -110,6 +110,32 @@ const material = new TextureSplattingMaterial({ //Create the material
 
 material.wireframe = false; // Fjerner wireframe
 
+// Implement a centerNode -- Add planes
+const centerNode = new THREE.Group();
+
+// Add centerNode to scene
+scene.add(centerNode);
+
+// Function to create plane
+function createPlane(size, texture, position) {
+    // Create plane geometry
+    const geometry = new THREE.SphereGeometry(size, 32, 32);
+    // Create plane material
+    const material = new THREE.MeshBasicMaterial({map: texture, side: THREE.DoubleSide});
+    // Create plane mesh
+    const plane = new THREE.Mesh(geometry, material);
+    // Set plane position
+    plane.position.set(position.x, position.y, position.z);
+    // Add to scene
+    scene.add(plane);
+    // Return plane
+    centerNode.add(plane);
+    return plane;
+}
+
+// Create planes and automatically add them to the scene
+const warPlane = createPlane(1, new THREE.TextureLoader().load('images/Plane.png'), {x: -5, y: 15, z: 0});
+const jetPlane = createPlane(2, new THREE.TextureLoader().load('images/Plane.png'), {x: 5, y: 15, z: 0});
 
 function updateRendererSize() {
     const { x: currentWidth, y: currentHeight } = renderer.getSize(
@@ -128,6 +154,7 @@ function updateRendererSize() {
 function loop() {
     updateRendererSize();
     renderer.render(scene, camera);
+    centerNode.rotation.y += 0.01;
 }
 
 renderer.setAnimationLoop(loop);
