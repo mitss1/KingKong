@@ -11,17 +11,23 @@ const renderer = new THREE.WebGLRenderer({
 });
 
 
+
+const renderer = new THREE.WebGLRenderer({
+    canvas: document.querySelector("canvas"),
+    antialias: true,
+});
+
 const white = new THREE.Color(THREE.Color.NAMES.white);
 renderer.setClearColor(white, 1.0);
 
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-camera.position.z += 10;
-camera.position.x += 10;
-camera.position.y += 10;
+camera.position.z += 0;
+camera.position.x += 0;
+camera.position.y += 15;
 
-camera.lookAt(0, 0, 0);
+camera.lookAt(0, 0, 10);
 
 scene.add(camera);
 
