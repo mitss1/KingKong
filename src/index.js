@@ -5,6 +5,8 @@ import { getHeightmapData } from "./utils.js";
 import TextureSplattingMaterial from "./TextureSplattingMaterial.js";
 import { OrbitControls } from "./OrbitControls.js";
 import {VRButton} from "../Common/VRButton.js";
+import { Water } from "../Common/Water.js";
+import { Sky } from "../Common/Sky.js";
 
 
 const canvas = document.querySelector("canvas"); //Get canvas
@@ -30,8 +32,65 @@ const scene = new THREE.Scene()
         'images/Daylight_Front.jpg',
         'images/Daylight_Back.jpg',
     ]);
-    scene.background = texture;
+    //scene.background = texture;
 };
+
+//Himmel
+function buildSky() {
+    const sky = new Sky();
+    sky.scale.setScalar(10000);
+    scene.add(sky);
+    return sky;
+}
+
+const sky = buildSky();
+
+//Sol
+function buildSun() {
+    const pmremGenerator = new THREE.PMREMGenerator(renderer);
+    const sun = new THREE.Vector3();
+
+    // Defining the x, y and z value for our 3D Vector
+    const theta = Math.PI * (0.49 - 0.5);
+    const phi = 2 * Math.PI * (0.205 - 0.5);
+    sun.x = Math.cos(phi);
+    sun.y = Math.sin(phi) * Math.sin(theta);
+    sun.z = Math.sin(phi) * Math.cos(theta);
+
+    sky.material.uniforms['sunPosition'].value.copy(sun);
+    scene.environment = pmremGenerator.fromScene(sky).texture;
+    return sun;
+}
+
+const sun = buildSun();
+
+//Vann
+function buildWater() {
+    const waterGeometry = new THREE.PlaneGeometry(10000, 10000);
+    const water = new Water(
+        waterGeometry,
+        {
+            textureWidth: 512,
+            textureHeight: 512,
+            waterNormals: new THREE.TextureLoader().load('', function ( texture ) {
+                texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+            }),
+            alpha: 1.0,
+            sunDirection: new THREE.Vector3(),
+            sunColor: 0xffffff,
+            waterColor: 0x001e0f,
+            distortionScale: 3.7,
+            fog: scene.fog !== undefined
+        }
+    );
+    water.rotation.x =- Math.PI / 2;
+    scene.add(water);
+
+    const waterUniforms = water.material.uniforms;
+    return water;
+}
+
+const water = buildWater();
 
 //Camera for vr
 const vrCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
@@ -58,8 +117,8 @@ scene.add(camera); // add the camera to the scene
 const axesHelper = new THREE.AxesHelper(1); //Axes helper
 scene.add(axesHelper); // add the axes helper to the scene
 
-const sun = new THREE.DirectionalLight(white, 1.0); //Sun
-scene.add(sun); // add the sun to the scene
+const sun2 = new THREE.DirectionalLight(white, 1.0); //Sun
+scene.add(sun2); // add the sun to the scene
 
 // TODO: implement terrain.
 const size = 128; //Size of the terrain
@@ -81,7 +140,7 @@ terrainImage.onload = () => { //When the terrain image is loaded
 };
 
 //Add fog to the scene
-scene.fog = new THREE.FogExp2(white, 0.1);
+//scene.fog = new THREE.FogExp2(white, 0.025);
 
 
 terrainImage.src = 'images/byMiljo.png'; // Importerer bilde til terreng
@@ -151,7 +210,18 @@ function updateRendererSize() {
     }
 }
 
+//Når man reskalerer vinduet
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+window.addEventListener('resize', onWindowResize);
+
 function loop() {
+    //Animerer vann
+    water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
+
     updateRendererSize();
     renderer.render(scene, camera);
     centerNode.rotation.y += 0.01;
