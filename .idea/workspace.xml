@@ -4,8 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5cfb1d2-c1a9-4e0f-ba40-e7db4859941c" name="Changes" comment="lagt til ModelLoader med modeller">
-      <changelist_data name="591335" email="591335@stud.hvl.no" date="1666351348000" />
+    <list default="true" id="b5cfb1d2-c1a9-4e0f-ba40-e7db4859941c" name="Changes" comment="merging">
+      <change afterPath="$PROJECT_DIR$/images/road/road texture pack-seamless (1).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/road/road texture pack-seamless (10).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/road/road texture pack-seamless (11).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/road/road texture pack-seamless (13).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/road/road texture pack-seamless (14).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/road/road texture pack-seamless (15).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/road/road texture pack-seamless (16).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/road/road texture pack-seamless (2).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/road/road texture pack-seamless (3).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/road/road texture pack-seamless (4).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/road/road texture pack-seamless (5).JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/road/road texture pack-seamless (6).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/road/road texture pack-seamless (7).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/road/road texture pack-seamless (8).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/road/road texture pack-seamless (9).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/road/road_12.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/OrbitControls.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Water.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/terrain.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/terrain.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/ModelLoader.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/ModelLoader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/building/building0_0.glb" beforeDir="false" afterPath="$PROJECT_DIR$/models/building/building0_0.glb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/building/building0_1.glb" beforeDir="false" afterPath="$PROJECT_DIR$/models/building/building0_1.glb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/building/building0_2.glb" beforeDir="false" afterPath="$PROJECT_DIR$/models/building/building0_2.glb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/building/building0_3.glb" beforeDir="false" afterPath="$PROJECT_DIR$/models/building/building0_3.glb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +47,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="591335 &lt;591335@stud.hvl.no&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="Sindre" />
@@ -40,7 +72,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/sindr/WebstormProjects/KingKong/images&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/sindr/WebstormProjects/KingKong/src&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -50,8 +82,13 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sindr\WebstormProjects\KingKong\src" />
       <recent name="C:\Users\sindr\WebstormProjects\KingKong\images" />
       <recent name="C:\Users\sindr\WebstormProjects\KingKong\models\building" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\sindr\WebstormProjects\KingKong\src" />
+      <recent name="C:\Users\sindr\WebstormProjects\KingKong\images\road" />
     </key>
   </component>
   <component name="RunManager">
@@ -75,7 +112,8 @@
       <workItem from="1667144272626" duration="4242000" />
       <workItem from="1667387388204" duration="5938000" />
       <workItem from="1667418769528" duration="621000" />
-      <workItem from="1667559992248" duration="2787000" />
+      <workItem from="1667559992248" duration="15097000" />
+      <workItem from="1668020122159" duration="11062000" />
     </task>
     <task id="LOCAL−00001" summary="lagt til ModelLoader med modeller">
       <created>1667561978891</created>
@@ -83,7 +121,13 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1667561978891</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="merging">
+      <created>1667562867521</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1667562867521</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,6 +146,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="lagt til ModelLoader med modeller" />
-    <option name="LAST_COMMIT_MESSAGE" value="lagt til ModelLoader med modeller" />
+    <MESSAGE value="merging" />
+    <option name="LAST_COMMIT_MESSAGE" value="merging" />
   </component>
 </project>

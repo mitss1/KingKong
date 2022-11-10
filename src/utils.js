@@ -38,7 +38,3 @@ export function getHeightmapData(image, size) {
 
   return data;
 }
-
-export function f() {
-  
-}
