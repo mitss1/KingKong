@@ -70,7 +70,7 @@ hemiLight.groundColor.setHSL(0.095,1,0.75);
 hemiLight.position.set(0,50,0);
 scene.add(hemiLight);
 
-const hemiLightHelper = new THREE.HemisphereLightHelper(hemiLight, 10);
+//const hemiLightHelper = new THREE.HemisphereLightHelper(hemiLight, 10);
 //scene.add(hemiLightHelper);
 
 const dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
@@ -121,54 +121,56 @@ terrainImage.onload = () => {
 
 let done = 0;
 
-let building0 = new THREE.Object3D();
-let building1 = new THREE.Object3D();
-let building2 = new THREE.Object3D();
-let building3 = new THREE.Object3D();
-done--;
-getModel('models/building/building0_0.glb', (gltf)=>{
-  gltf.scene.traverse(function (node) {
-    if (node.isMesh) {
-      node.receiveShadow = true;
-      node.castShadow = true;
-    }
+let building0 = [];
+
+let building1_0 = new THREE.Object3D();
+let building4 = new THREE.Object3D();
+
+const building1l = 'models/building/building0';
+let con = true;
+let index = 0;
+
+function doesFileExist(urlToFile) {
+  const xhr = new XMLHttpRequest();
+  xhr.open('HEAD', urlToFile, false);
+  xhr.send();
+
+  if (xhr.status == "404") {
+    return false;
+  } else {
+    return true;
+  }
+}
+while(doesFileExist(building1l + '_' + index +'.glb')){
+  console.log(building1l + '_' + index +'.glb');
+  getModel(building1l + '_' + index +'.glb', (gltf)=>{
+      gltf.scene.traverse(function (node) {
+      if (node.isMesh) {
+        node.receiveShadow = true;
+        node.castShadow = true;
+      }
+    });
+    building0.push(gltf.scene);
+    done++;
   });
-  building0.add(gltf.scene.children[0]);
-  done++;
-});
-done--;
-getModel('models/building/building0_1.glb', (gltf)=>{
-  gltf.scene.traverse(function (node) {
-    if (node.isMesh) {
-      node.receiveShadow = true;
-      node.castShadow = true;
-    }
-  });
-  building1.add(gltf.scene.children[0]);
-  done++;
-});
-done--;
-getModel('models/building/building0_2.glb', (gltf)=>{
-  gltf.scene.traverse(function (node) {
-    if (node.isMesh) {
-      node.receiveShadow = true;
-      node.castShadow = true;
-    }
-  });
-  building2.add(gltf.scene.children[0]);
-  done++;
-});
-done--;
-getModel('models/building/building0_3.glb', (gltf)=>{
-  gltf.scene.traverse(function (node) {
-    if (node.isMesh) {
-      node.receiveShadow = true;
-      node.castShadow = true;
-    }
-  });
-  building3.add(gltf.scene.children[0]);
-  done++;
-});
+  index++;
+}
+
+
+
+const texLoad = new THREE.TextureLoader();
+const texCube = texLoad.load('models/building/textures/buildingBase.png');
+
+const cube1 = new THREE.Mesh(
+    new THREE.BoxGeometry(30,300,30),
+    new THREE.MeshPhongMaterial({
+      map: texCube
+    })
+);
+cube1.receiveShadow = true;
+cube1.castShadow = true;
+
+building4.add(cube1);
 
 // x = [-26 , -8]
 // y = [-28 ,-10]
@@ -176,37 +178,37 @@ getModel('models/building/building0_3.glb', (gltf)=>{
 // max x [-95,95]
 // max y [-95,95]
 
-let x = -95;
-let y = -95;
+let maxDist = 35;
+let spacing = 4;
 
 function waitForElement() {
-  if(done !== 0){
-    setTimeout(waitForElement,250);
+  if(done < index){
+    setTimeout(waitForElement,1000);
   } else {
-
-    while(x < 90){
-      while(y < 90) {
-        if(y < -11 && y > -29 && x < -9 && x > -27){
-          y = -11;
+    let x = -maxDist;
+    let y = -maxDist;
+    while(x<maxDist){
+      while(y<maxDist){
+        if(Math.sqrt(x*x+y*y) < maxDist && (x < -26 || x > -8 || y < -28 || y > -10)) {
+          console.log(building0);
+          const lod = LODModel(
+              building0,
+              scene,
+              0.04,
+              x + Math.random() * 2 - 1, 2.05, y + Math.random() * 2 - 1,
+              [0.0, 5.0, 10.0, 20.0, 30.0]
+          );
+          console.log(lod);
+          scene.add(lod);
         }
-        y += 4;
-        const lod = LODModel([
-              building0.clone(),
-              building1.clone(),
-              building2.clone(),
-              building3.clone()],
-            scene,
-            0.04,
-            x + Math.random()*2 -1,2.05,y + Math.random()*2 -1
-        );
-        scene.add(lod);
+        y += spacing;
       }
-      x+=4;
-      y=-95;
+      y = -maxDist;
+      x += spacing;
     }
   }
 }
-waitForElement(done);
+waitForElement();
 
 //Water
 const waterGeometry = new THREE.PlaneGeometry(2048,2048);
@@ -265,7 +267,7 @@ const material = new TextureSplattingMaterial({
 
 material.wireframe = false;
 
-scene.fog = new THREE.FogExp2(0xffffff,0.01);
+scene.fog = new THREE.FogExp2(0xffffff,0.05);
 
 
 function updateRendererSize() {
@@ -286,8 +288,10 @@ function loop() {
   updateRendererSize();
   //console.log(lod.getCurrentLevel());
   //console.log(scene.children);
-  //console.log(lod.getCurrentLevel());
-
+  if (scene.children[6] !== undefined) {
+    //console.log(scene.children[6].getCurrentLevel());
+  }
+  //console.log(building0);
   water.material.uniforms['time'].value += 1.0/240.0;
 
   renderer.render(scene, camera);

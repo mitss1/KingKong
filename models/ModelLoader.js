@@ -33,11 +33,11 @@ export function getModel(model,callback) {
     );
 }
 
-export function LODModel(models,node,scale,x,y,z) {
+export function LODModel(models,node,scale,x,y,z,ranges) {
     const lod = new THREE.LOD();
     let i = 0;
     models.forEach((model)=>{
-        lod.addLevel(model,i^2*10);
+        lod.addLevel(model,ranges[i]);
         i++;
     });
     lod.traverse((mesh)=>{
@@ -50,3 +50,4 @@ export function LODModel(models,node,scale,x,y,z) {
     lod.scale.set(scale,scale,scale);
     return lod;
 }
+
