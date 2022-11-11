@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b5cfb1d2-c1a9-4e0f-ba40-e7db4859941c" name="Changes" comment="added VR">
-      <change afterPath="$PROJECT_DIR$/src/GLTFLoader.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/Sky.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/VRButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/Common/VRButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Common/Water.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/apartments7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/terrain.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/terrain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TextureSplattingMaterial.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/TextureSplattingMaterial.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/three.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/three.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +77,7 @@
       <option name="presentableId" value="Default" />
       <updated>1668110342305</updated>
       <workItem from="1668110343685" duration="9336000" />
-      <workItem from="1668169226891" duration="181000" />
+      <workItem from="1668169226891" duration="942000" />
     </task>
     <task id="LOCAL−00001" summary="merging">
       <created>1668165058015</created>
