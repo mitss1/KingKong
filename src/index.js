@@ -3,17 +3,14 @@
 import * as THREE from "./three.module.js";
 import { getHeightmapData } from "./utils.js";
 import TextureSplattingMaterial from "./TextureSplattingMaterial.js";
-<<<<<<< Updated upstream
 import { OrbitControls } from "./OrbitControls.js";
 import {VRButton} from "../Common/VRButton.js";
 import { Water } from "../Common/Water.js";
 import { Sky } from "../Common/Sky.js";
-=======
+
 import {getModel, LODModel} from "../models/ModelLoader.js";
 import {OrbitControls} from "./OrbitControls.js";
-import {Water} from "./Water.js";
-import {VRButton} from "../Common/VRButton.js"
->>>>>>> Stashed changes
+import {VRButton} from "../Common/VRButton.js";
 
 
 const canvas = document.querySelector("canvas"); //Get canvas
@@ -184,86 +181,6 @@ scene.add(centerNode);
 
 // Function to create plane
 function createPlane(size, texture, position) {
-    // Create plane geometry
-    const geometry = new THREE.SphereGeometry(size, 32, 32);
-    // Create plane material
-    const material = new THREE.MeshBasicMaterial({map: texture, side: THREE.DoubleSide});
-    // Create plane mesh
-    const plane = new THREE.Mesh(geometry, material);
-    // Set plane position
-    plane.position.set(position.x, position.y, position.z);
-    // Add to scene
-    scene.add(plane);
-    // Return plane
-    centerNode.add(plane);
-    return plane;
-}
-
-// Create planes and automatically add them to the scene
-const warPlane = createPlane(1, new THREE.TextureLoader().load('images/rock.png'), {x: -5, y: 15, z: 0});
-const jetPlane = createPlane(2, new THREE.TextureLoader().load('images/rock.png'), {x: 5, y: 15, z: 0});
-
-// CatMulRomCurve3 closed loop for first plane
-const curve = new THREE.CatmullRomCurve3([
-    new THREE.Vector3( -10, 12, 10 ),
-    new THREE.Vector3( -5, 10, 5 ),
-    new THREE.Vector3( 0, 15, 0 ),
-    new THREE.Vector3( 5, 11, 5 ),
-    new THREE.Vector3( 10, 16, 10 )
-]);
-
-// CatMulRomCurve3 closed loop for second plane
-const curve2 = new THREE.CatmullRomCurve3([
-    new THREE.Vector3( 12, 12, 8 ),
-    new THREE.Vector3( -5, 13, 5 ),
-    new THREE.Vector3( -5, 15, 5 ),
-    new THREE.Vector3( -5, 11, -5 ),
-    new THREE.Vector3( 12, 16, -10 )
-]);
-// Ends meet
-curve.closed = true;
-const points = curve.getPoints( 50 );
-const geometryCurve = new THREE.BufferGeometry().setFromPoints( points );
-//Color of first curve
-const materialCurve = new THREE.LineBasicMaterial( { color : 0xff0000 } );
-const curveObject = new THREE.Line( geometryCurve, materialCurve );
-scene.add( curveObject );
-
-curve2.closed = true;
-const points2 = curve2.getPoints( 50 );
-const geometryCurve2 = new THREE.BufferGeometry().setFromPoints( points2 );
-//Color of second curve
-const materialCurve2 = new THREE.LineBasicMaterial( { color : 0x0000ff } );
-const curveObject2 = new THREE.Line( geometryCurve2, materialCurve2 );
-scene.add( curveObject2 );
-
-// Move plane object along curve
-function moveAlongCurve() {
-    const t = Date.now() / 5000;
-    const position = curve.getPointAt(t % 1);
-    const tangent = curve.getTangentAt(t % 1);
-    const up = new THREE.Vector3(0, 1, 0);
-    const quaternion = new THREE.Quaternion().setFromUnitVectors(up, tangent.normalize());
-
-    const position2 = curve2.getPointAt(t % 1);
-    const tangent2 = curve2.getTangentAt(t % 1);
-    const up2 = new THREE.Vector3(0, 1, 0);
-    const quaternion2 = new THREE.Quaternion().setFromUnitVectors(up2, tangent2.normalize());
-
-    warPlane.position.copy(position);
-    warPlane.quaternion.copy(quaternion);
-    jetPlane.position.copy(position2);
-    jetPlane.quaternion.copy(quaternion2);
-}
-
-// Implement a centerNode -- Add planes
-const centerNode = new THREE.Group();
-
-// Add centerNode to scene
-scene.add(centerNode);
-
-// Function to create plane
-function createPlane(size, texture, position) {
   // Create plane geometry
   const geometry = new THREE.SphereGeometry(size, 32, 32);
   // Create plane material
@@ -336,15 +253,6 @@ function moveAlongCurve() {
   jetPlane.quaternion.copy(quaternion2);
 }
 
-//Når man reskalerer vinduet
-function onWindowResize() {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-}
-window.addEventListener('resize', onWindowResize);
-
-
 function updateRendererSize() {
     const { x: currentWidth, y: currentHeight } = renderer.getSize(
         new THREE.Vector2()
@@ -368,16 +276,9 @@ function onWindowResize() {
 window.addEventListener('resize', onWindowResize);
 
 function loop() {
-<<<<<<< Updated upstream
     //Animerer vann
     water.material.uniforms[ 'time' ].value += 1.0 / 60.0;
 
-    //Animerer fly
-    moveAlongCurve();
-
-    updateRendererSize();
-    renderer.render(scene, camera);
-=======
   updateRendererSize();
   //console.log(lod.getCurrentLevel());
   console.log(scene.children);
@@ -391,7 +292,6 @@ function loop() {
   moveAlongCurve();
 
   renderer.render(scene, camera);
->>>>>>> Stashed changes
 }
 
 renderer.setAnimationLoop(loop);
