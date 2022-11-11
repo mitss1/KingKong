@@ -4,6 +4,7 @@
  * Loads heightmap data from an image.
  * The image should be loaded before using this method.
  * @param  {HTMLImageElement} image Image to load.
+ * @param size resolution of the map
  * @return {Float32Array} A Float32Array containing the heightmap data.
  *
  * Example 4x4 image:

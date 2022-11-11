@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5cfb1d2-c1a9-4e0f-ba40-e7db4859941c" name="Changes" comment="added VR" />
+    <list default="true" id="b5cfb1d2-c1a9-4e0f-ba40-e7db4859941c" name="Changes" comment="added VR">
+      <change afterPath="$PROJECT_DIR$/src/GLTFLoader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/Sky.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/VRButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/Common/VRButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Common/Water.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/apartments7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/terrain.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/terrain.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TextureSplattingMaterial.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/TextureSplattingMaterial.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/three.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/three.module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,14 +51,19 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/matssoiland/Documents/GitHub/KingKong/src&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\sindr\WebstormProjects\KingKong\models\building" />
       <recent name="C:\Users\sindr\WebstormProjects\KingKong\models\building\textures" />
@@ -64,12 +82,13 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0c85c56e-ccf4-40c2-adc6-e4f447d7cd6b" name="Changes" comment="" />
+      <changelist id="b5cfb1d2-c1a9-4e0f-ba40-e7db4859941c" name="Changes" comment="added VR" />
       <created>1668110342305</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668110342305</updated>
       <workItem from="1668110343685" duration="9336000" />
+      <workItem from="1668169226891" duration="181000" />
     </task>
     <task id="LOCAL−00001" summary="merging">
       <created>1668165058015</created>
