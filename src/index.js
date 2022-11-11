@@ -215,7 +215,7 @@ function waitForElement() {
   console.log(done);
   console.log(total);
   if(done < total){
-    setTimeout(waitForElement,1000);
+    setTimeout(waitForElement,250);
   } else {
     let x = -maxDist;
     let y = -maxDist;
