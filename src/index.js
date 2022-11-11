@@ -6,6 +6,7 @@ import TextureSplattingMaterial from "./TextureSplattingMaterial.js";
 import {getModel, loadModel, LODModel} from "../models/ModelLoader.js";
 import {OrbitControls} from "./OrbitControls.js";
 import {Water} from "./Water.js";
+import {VRButton} from "../Common/VRButton.js"
 
 
 const renderer = new THREE.WebGLRenderer({
@@ -23,8 +24,12 @@ renderer.setClearColor(white, 1.0);
 const scene = new THREE.Scene();
 
 //Camera for vr
+renderer.xr.enabled = true; // Enable VR
+
+document.body.appendChild(VRButton.createButton(renderer)); //VR button
+
 const vrCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-vrCamera.position.set( 0, 10, 0); // set the initial position entering VR
+vrCamera.position.set( 0, 13.5, -0.4); // set the initial position entering VR
 //When entering VR
 renderer.xr.addEventListener(`sessionstart`, function (){
   scene.add(vrCamera);
