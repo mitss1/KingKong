@@ -23,12 +23,12 @@ export function loadModel(model,Node,scale,trans){
     );
 }
 
-export function getModel(model,callback) {
+export function getModel(model,temp,callback) {
     const loader = new GLTFLoader();
     loader.load(
         model,
         function (gltf) {
-            callback(gltf);
+            callback(gltf,temp);
         }
     );
 }

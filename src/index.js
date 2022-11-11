@@ -119,15 +119,34 @@ terrainImage.onload = () => {
   scene.add(mesh);
 };
 
+const texLoad = new THREE.TextureLoader();
+const texCube = texLoad.load('models/building/textures/buildingBase.png');
+
+const cube1 = new THREE.Mesh(
+    new THREE.BoxGeometry(30,300,30),
+    new THREE.MeshPhongMaterial({
+      map: texCube
+    })
+);
+cube1.receiveShadow = true;
+cube1.castShadow = true;
+
 let done = 0;
 
-let building0 = [];
+let building0 = [new THREE.Object3D(),
+  new THREE.Object3D(),
+  new THREE.Object3D(),
+  new THREE.Object3D(),
+  new THREE.Object3D()];
 
-let building1_0 = new THREE.Object3D();
-let building4 = new THREE.Object3D();
+let building1 = [new THREE.Object3D(),
+  new THREE.Object3D()];
 
-const building1l = 'models/building/building0';
-let con = true;
+let buildings = [building0,building1];
+const ranges = [[0.0,5.0,10.0,25.0,50.0],[0.0,50.0]];
+
+const buildingl = 'models/building/building';
+let total = 0;
 let index = 0;
 
 function doesFileExist(urlToFile) {
@@ -141,36 +160,42 @@ function doesFileExist(urlToFile) {
     return true;
   }
 }
-while(doesFileExist(building1l + '_' + index +'.glb')){
-  console.log(building1l + '_' + index +'.glb');
-  getModel(building1l + '_' + index +'.glb', (gltf)=>{
+while(doesFileExist(buildingl + '0_' + index +'.glb')){
+  console.log(buildingl + '0_' + index +'.glb');
+  getModel(buildingl + '0_' + index +'.glb', index,(gltf,ind)=>{
       gltf.scene.traverse(function (node) {
       if (node.isMesh) {
         node.receiveShadow = true;
         node.castShadow = true;
       }
     });
-    building0.push(gltf.scene);
+      building0[ind].add(gltf.scene.children[0]);
+      done++;
+  });
+  index++;
+}
+building0[4].add(cube1.clone(true));
+total = index;
+index = 0;
+while(doesFileExist(buildingl + '1_' + index +'.glb')){
+  console.log(buildingl + '1_' + index +'.glb');
+  getModel(buildingl + '1_' + index +'.glb', index,(gltf,ind)=>{
+    gltf.scene.traverse(function (node) {
+      if (node.isMesh) {
+        node.receiveShadow = true;
+        node.castShadow = true;
+      }
+    });
+    gltf.scene.children[0].scale.set(15.0,1.5,15.0);
+    building1[ind].add(gltf.scene.children[0]);
     done++;
   });
   index++;
 }
+building1[index].add(cube1.clone(true));
 
-
-
-const texLoad = new THREE.TextureLoader();
-const texCube = texLoad.load('models/building/textures/buildingBase.png');
-
-const cube1 = new THREE.Mesh(
-    new THREE.BoxGeometry(30,300,30),
-    new THREE.MeshPhongMaterial({
-      map: texCube
-    })
-);
-cube1.receiveShadow = true;
-cube1.castShadow = true;
-
-building4.add(cube1);
+total += index;
+//building4.add(cube1);
 
 // x = [-26 , -8]
 // y = [-28 ,-10]
@@ -182,21 +207,24 @@ let maxDist = 35;
 let spacing = 4;
 
 function waitForElement() {
-  if(done < index){
+  console.log(done);
+  console.log(total);
+  if(done < total){
     setTimeout(waitForElement,1000);
   } else {
     let x = -maxDist;
     let y = -maxDist;
     while(x<maxDist){
       while(y<maxDist){
-        if(Math.sqrt(x*x+y*y) < maxDist && (x < -26 || x > -8 || y < -28 || y > -10)) {
-          console.log(building0);
+        if(Math.sqrt(x*x+y*y) < maxDist && (x < -26 || x > -8 || y < -28 || y > -10) && (x < -3 || x > 3 || y < -2 || y > 2)) {
+          const i = Math.floor(Math.random()*buildings.length);
+          console.log(i);
           const lod = LODModel(
-              building0,
+              buildings[i].map((model) => model.clone(true)),
               scene,
               0.04,
-              x + Math.random() * 2 - 1, 2.05, y + Math.random() * 2 - 1,
-              [0.0, 5.0, 10.0, 20.0, 30.0]
+              x + Math.random() * 3 - 1, 2.05, y + Math.random() * 3 - 1,
+              ranges[i]
           );
           console.log(lod);
           scene.add(lod);
@@ -231,7 +259,7 @@ water.position.setY(1.8);
 scene.add(water);
 
 
-getModel('models/empire_state/empireState.glb',(model) => {
+getModel('models/empire_state/empireState.glb',0,(model) => {
   model.scene.position.set(0,2.05,0);
   model.scene.scale.set(0.04,0.04,0.04);
   model.scene.traverse(function (node) {
@@ -287,7 +315,7 @@ function updateRendererSize() {
 function loop() {
   updateRendererSize();
   //console.log(lod.getCurrentLevel());
-  //console.log(scene.children);
+  console.log(scene.children);
   if (scene.children[6] !== undefined) {
     //console.log(scene.children[6].getCurrentLevel());
   }
