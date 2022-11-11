@@ -7,6 +7,7 @@ import {getModel, LODModel} from "../models/ModelLoader.js";
 import {OrbitControls} from "./OrbitControls.js";
 import {Water} from "./Water.js";
 import {VRButton} from "../Common/VRButton.js"
+import { addTreeSprite } from "./sprite.js";
 
 
 const renderer = new THREE.WebGLRenderer({
@@ -381,6 +382,13 @@ function moveAlongCurve() {
   jetPlane.position.copy(position2);
   jetPlane.quaternion.copy(quaternion2);
 }
+
+//første klynge
+addTreeSprite(-20,-8, 3, -17, -11, scene);
+//andre klynge
+addTreeSprite(-28,-10, 3.24, -28, -18, scene);
+//tredje klynge
+addTreeSprite(-20,-8, 3.5, -28, -17, scene);
 
 //Når man reskalerer vinduet
 function onWindowResize() {
