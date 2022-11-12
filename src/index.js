@@ -8,6 +8,7 @@ import {OrbitControls} from "./OrbitControls.js";
 import {Water} from "./Water.js";
 import {VRButton} from "../Common/VRButton.js"
 import { addTreeSprite } from "./sprite.js";
+import {getModel, loadModel, LODModel} from "../models/ModelLoader.js";
 
 
 const renderer = new THREE.WebGLRenderer({
@@ -154,6 +155,21 @@ const ranges = [[0.0,5.0,10.0,25.0,50.0],[0.0,50.0]];
 const buildingl = 'models/building/building';
 let total = 0;
 let index = 0;
+
+
+getModel('models/planes/plane.glb',0,(gltf,ind)=>{
+  gltf.scene.traverse(function (node) {
+    if (node.isMesh) {
+      node.receiveShadow = true;
+      node.castShadow = true;
+    }
+  });
+  gltf.scene.scale.set(0.1,0.12,0.1);
+  gltf.scene.position.set(5,15,5);
+  scene.add(gltf.scene);
+});
+
+
 
 function doesFileExist(urlToFile) {
   const xhr = new XMLHttpRequest();

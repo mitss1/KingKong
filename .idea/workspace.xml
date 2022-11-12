@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="b5cfb1d2-c1a9-4e0f-ba40-e7db4859941c" name="Changes" comment="added VR">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+    <list default="true" id="b5cfb1d2-c1a9-4e0f-ba40-e7db4859941c" name="Changes" comment="push">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+>>>>>>> Sindre
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,19 +46,28 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+<<<<<<< HEAD
     &quot;last_opened_file_path&quot;: &quot;/Users/matssoiland/Documents/GitHub/KingKong/src&quot;,
+=======
+>>>>>>> Sindre
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+<<<<<<< HEAD
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+=======
+>>>>>>> Sindre
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
+<<<<<<< HEAD
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
     </key>
+=======
+>>>>>>> Sindre
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\sindr\WebstormProjects\KingKong\models\building" />
       <recent name="C:\Users\sindr\WebstormProjects\KingKong\models\building\textures" />
@@ -71,13 +86,20 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="b5cfb1d2-c1a9-4e0f-ba40-e7db4859941c" name="Changes" comment="added VR" />
+=======
+      <changelist id="0c85c56e-ccf4-40c2-adc6-e4f447d7cd6b" name="Changes" comment="" />
+>>>>>>> Sindre
       <created>1668110342305</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668110342305</updated>
       <workItem from="1668110343685" duration="9336000" />
+<<<<<<< HEAD
       <workItem from="1668169226891" duration="4979000" />
+=======
+>>>>>>> Sindre
     </task>
     <task id="LOCAL−00001" summary="merging">
       <created>1668165058015</created>
