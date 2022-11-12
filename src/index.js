@@ -3,12 +3,18 @@
 import * as THREE from "./three.module.js";
 import { getHeightmapData } from "./utils.js";
 import TextureSplattingMaterial from "./TextureSplattingMaterial.js";
+<<<<<<< HEAD
 import {getModel, LODModel} from "../models/ModelLoader.js";
 import {OrbitControls} from "./OrbitControls.js";
 import {Water} from "./Water.js";
 import {VRButton} from "../Common/VRButton.js"
 import { addTreeSprite } from "./sprite.js";
+=======
 import {getModel, loadModel, LODModel} from "../models/ModelLoader.js";
+import {OrbitControls} from "./OrbitControls.js";
+import {Water} from "./Water.js";
+import {VRButton} from "../Common/VRButton.js"
+>>>>>>> Sindre
 
 
 const renderer = new THREE.WebGLRenderer({
@@ -156,6 +162,8 @@ const buildingl = 'models/building/building';
 let total = 0;
 let index = 0;
 
+<<<<<<< HEAD
+=======
 
 getModel('models/planes/plane.glb',0,(gltf,ind)=>{
   gltf.scene.traverse(function (node) {
@@ -171,6 +179,7 @@ getModel('models/planes/plane.glb',0,(gltf,ind)=>{
 
 
 
+>>>>>>> Sindre
 function doesFileExist(urlToFile) {
   const xhr = new XMLHttpRequest();
   xhr.open('HEAD', urlToFile, false);
@@ -196,6 +205,10 @@ while(doesFileExist(buildingl + '0_' + index +'.glb')){
   });
   index++;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> Sindre
 building0[4].add(cube1.clone(true));
 total = index;
 index = 0;
@@ -316,6 +329,11 @@ const material = new TextureSplattingMaterial({
 });
 
 material.wireframe = false;
+<<<<<<< HEAD
+=======
+
+scene.fog = new THREE.FogExp2(0xffffff,0.05);
+>>>>>>> Sindre
 
 scene.fog = new THREE.FogExp2(0xffffff,0.05);
 
@@ -438,9 +456,12 @@ function loop() {
   //console.log(building0);
   water.material.uniforms['time'].value += 1.0/240.0;
 
+<<<<<<< HEAD
   //Animerer fly
   moveAlongCurve();
 
+=======
+>>>>>>> Sindre
   renderer.render(scene, camera);
 }
 
