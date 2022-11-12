@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b5cfb1d2-c1a9-4e0f-ba40-e7db4859941c" name="Changes" comment="added VR">
-      <change afterPath="$PROJECT_DIR$/src/sprite.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +77,7 @@
       <option name="presentableId" value="Default" />
       <updated>1668110342305</updated>
       <workItem from="1668110343685" duration="9336000" />
-      <workItem from="1668169226891" duration="1262000" />
+      <workItem from="1668169226891" duration="3803000" />
     </task>
     <task id="LOCAL−00001" summary="merging">
       <created>1668165058015</created>
