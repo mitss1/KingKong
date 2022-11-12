@@ -154,6 +154,21 @@ const buildingl = 'models/building/building';
 let total = 0;
 let index = 0;
 
+
+getModel('models/planes/plane.glb',0,(gltf,ind)=>{
+  gltf.scene.traverse(function (node) {
+    if (node.isMesh) {
+      node.receiveShadow = true;
+      node.castShadow = true;
+    }
+  });
+  gltf.scene.scale.set(0.1,0.12,0.1);
+  gltf.scene.position.set(5,15,5);
+  scene.add(gltf.scene);
+});
+
+
+
 function doesFileExist(urlToFile) {
   const xhr = new XMLHttpRequest();
   xhr.open('HEAD', urlToFile, false);
@@ -179,6 +194,7 @@ while(doesFileExist(buildingl + '0_' + index +'.glb')){
   });
   index++;
 }
+
 building0[4].add(cube1.clone(true));
 total = index;
 index = 0;
