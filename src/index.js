@@ -3,18 +3,12 @@
 import * as THREE from "./three.module.js";
 import { getHeightmapData } from "./utils.js";
 import TextureSplattingMaterial from "./TextureSplattingMaterial.js";
-<<<<<<< HEAD
 import {getModel, LODModel} from "../models/ModelLoader.js";
 import {OrbitControls} from "./OrbitControls.js";
 import {Water} from "./Water.js";
 import {VRButton} from "../Common/VRButton.js"
 import { addTreeSprite } from "./sprite.js";
-=======
-import {getModel, loadModel, LODModel} from "../models/ModelLoader.js";
-import {OrbitControls} from "./OrbitControls.js";
-import {Water} from "./Water.js";
-import {VRButton} from "../Common/VRButton.js"
->>>>>>> Sindre
+import {GLTFLoader} from "./GLTFLoader.js";
 
 
 const renderer = new THREE.WebGLRenderer({
@@ -37,7 +31,7 @@ renderer.xr.enabled = true; // Enable VR
 document.body.appendChild(VRButton.createButton(renderer)); //VR button
 
 const vrCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-vrCamera.position.set( 0, 13.5, -0.4); // set the initial position entering VR
+vrCamera.position.set( 0, 13.5, -4); // set the initial position entering VR
 //When entering VR
 renderer.xr.addEventListener(`sessionstart`, function (){
   scene.add(vrCamera);
@@ -162,24 +156,6 @@ const buildingl = 'models/building/building';
 let total = 0;
 let index = 0;
 
-<<<<<<< HEAD
-=======
-
-getModel('models/planes/plane.glb',0,(gltf,ind)=>{
-  gltf.scene.traverse(function (node) {
-    if (node.isMesh) {
-      node.receiveShadow = true;
-      node.castShadow = true;
-    }
-  });
-  gltf.scene.scale.set(0.1,0.12,0.1);
-  gltf.scene.position.set(5,15,5);
-  scene.add(gltf.scene);
-});
-
-
-
->>>>>>> Sindre
 function doesFileExist(urlToFile) {
   const xhr = new XMLHttpRequest();
   xhr.open('HEAD', urlToFile, false);
@@ -205,10 +181,6 @@ while(doesFileExist(buildingl + '0_' + index +'.glb')){
   });
   index++;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> Sindre
 building0[4].add(cube1.clone(true));
 total = index;
 index = 0;
@@ -329,11 +301,6 @@ const material = new TextureSplattingMaterial({
 });
 
 material.wireframe = false;
-<<<<<<< HEAD
-=======
-
-scene.fog = new THREE.FogExp2(0xffffff,0.05);
->>>>>>> Sindre
 
 scene.fog = new THREE.FogExp2(0xffffff,0.05);
 
@@ -343,26 +310,85 @@ const centerNode = new THREE.Group();
 // Add centerNode to scene
 scene.add(centerNode);
 
-// Function to create plane
-function createPlane(size, texture, position) {
-  // Create plane geometry
-  const geometry = new THREE.SphereGeometry(size, 32, 32);
-  // Create plane material
-  const material = new THREE.MeshBasicMaterial({map: texture, side: THREE.DoubleSide});
-  // Create plane mesh
-  const plane = new THREE.Mesh(geometry, material);
+
+const plane = new THREE.Object3D();
+const plane2 = new THREE.Object3D();
+
+const planeloader = new GLTFLoader();
+planeloader.load('models/planes/plane.glb', (gltf) => {
+    gltf.scene.traverse(function (node) {
+        if (node.isMesh) {
+            node.receiveShadow = true;
+            node.castShadow = true;
+        }
+    });
   // Set plane position
-  plane.position.set(position.x, position.y, position.z);
-  // Add to scene
+  gltf.scene.position.set(0, 0, 0);
+  // Set plane rotation
+  // Set plane scale
+  gltf.scene.scale.set(0.1, 0.1, 0.1);
+  // Add plane to scene
+  scene.add(gltf.scene);
+  // Set plane as the object to be animated
+  plane.add(gltf.scene);
+});
+
+const planeloader2 = new GLTFLoader();
+planeloader2.load('models/planes/plane.glb', (gltf) => {
+    gltf.scene.traverse(function (node) {
+        if (node.isMesh) {
+            node.receiveShadow = true;
+            node.castShadow = true;
+        }
+    });
+  // Set plane position
+  gltf.scene.position.set(0, 0, 0);
+  // Set plane rotation
+  // Set plane scale
+  gltf.scene.scale.set(0.1, 0.1, 0.1);
+  // Add plane to scene
+  scene.add(gltf.scene);
+  // Set plane as the object to be animated
+  plane2.add(gltf.scene);
+});
+
+// Move plane along curve
+function animate() {
+  // Get time
+  const time = Date.now();
+  // Get position along curve
+  const position = curve.getPointAt( ( time % 10000 ) / 10000 );
+  // Get rotation along curve
+  const tangent = curve.getTangentAt( ( time % 10000 ) / 10000 ).normalize();
+  // Set plane position
+  plane.position.copy(position);
+  // Set plane rotation
+  const quaternion = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, -1), tangent);
+  plane.quaternion.copy(quaternion);
+  // Set plane scale
+  plane.scale.set(0.5, 0.5, 0.5);
+  // Add plane to scene
   scene.add(plane);
-  // Return plane
-  centerNode.add(plane);
-  return plane;
 }
 
-// Create planes and automatically add them to the scene
-const warPlane = createPlane(0.5, new THREE.TextureLoader().load('images/rock.png'), {x: -5, y: 15, z: 0});
-const jetPlane = createPlane(1, new THREE.TextureLoader().load('images/rock.png'), {x: 5, y: 15, z: 0});
+// Move plane2 along curve
+function animate2() {
+  // Get time
+  const time = Date.now();
+  // Get position along curve
+  const position = curve2.getPointAt( ( time % 10000 ) / 10000 );
+  // Get rotation along curve
+  const tangent = curve2.getTangentAt( ( time % 10000 ) / 10000 ).normalize();
+  // Set plane position
+  plane2.position.copy(position);
+  // Set plane rotation
+  const quaternion = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 0, -1), tangent);
+  plane2.quaternion.copy(quaternion);
+  // Set plane scale
+  plane2.scale.set(0.5, 0.5, 0.5);
+  // Add plane to scene
+  scene.add(plane2);
+}
 
 // CatMulRomCurve3 closed loop for first plane
 const curve = new THREE.CatmullRomCurve3([
@@ -397,25 +423,6 @@ const geometryCurve2 = new THREE.BufferGeometry().setFromPoints( points2 );
 const materialCurve2 = new THREE.LineBasicMaterial( { color : white, transparent : true, opacity : 0.0 } );
 const curveObject2 = new THREE.Line( geometryCurve2, materialCurve2 );
 scene.add( curveObject2 );
-
-// Move plane object along curve
-function moveAlongCurve() {
-  const t = Date.now() / 5000;
-  const position = curve.getPointAt(t % 1);
-  const tangent = curve.getTangentAt(t % 1);
-  const up = new THREE.Vector3(0, 1, 0);
-  const quaternion = new THREE.Quaternion().setFromUnitVectors(up, tangent.normalize());
-
-  const position2 = curve2.getPointAt(t % 1);
-  const tangent2 = curve2.getTangentAt(t % 1);
-  const up2 = new THREE.Vector3(0, 1, 0);
-  const quaternion2 = new THREE.Quaternion().setFromUnitVectors(up2, tangent2.normalize());
-
-  warPlane.position.copy(position);
-  warPlane.quaternion.copy(quaternion);
-  jetPlane.position.copy(position2);
-  jetPlane.quaternion.copy(quaternion2);
-}
 
 //første klynge
 addTreeSprite(-20,-8, 3, -17, -11, scene);
@@ -456,12 +463,10 @@ function loop() {
   //console.log(building0);
   water.material.uniforms['time'].value += 1.0/240.0;
 
-<<<<<<< HEAD
   //Animerer fly
-  moveAlongCurve();
+  animate();
+  animate2();
 
-=======
->>>>>>> Sindre
   renderer.render(scene, camera);
 }
 
