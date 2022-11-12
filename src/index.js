@@ -31,7 +31,7 @@ renderer.xr.enabled = true; // Enable VR
 document.body.appendChild(VRButton.createButton(renderer)); //VR button
 
 const vrCamera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-vrCamera.position.set( 0, 13.5, -4); // set the initial position entering VR
+vrCamera.position.set( 0, 13.5, -0.4); // set the initial position entering VR
 //When entering VR
 renderer.xr.addEventListener(`sessionstart`, function (){
   scene.add(vrCamera);
